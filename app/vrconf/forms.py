@@ -9,9 +9,17 @@ class LoginForm(Form):
     email = StringField('Email', validators=[Required(), Length(1, 64),
                                              Email()])
     password = PasswordField('Password', validators=[Required()])
-    remember_me = BooleanField('Keep me logged in')
+    consumer_secret = BooleanField('Keep me logged in')
     submit = SubmitField('Log In')
 
+
+
+class ConnectionSettingsForm(Form):
+    consumer_key = StringField('consumer_key', validators=[Required()])
+    consumer_secret = StringField('consumer_secret', validators=[Required()])
+    access_token = StringField('access_token', validators=[Required()])
+    access_token_secret = StringField('access_token_secret', validators=[Required()])
+    submit = SubmitField('Submit Information')
 
 class RegistrationForm(Form):
     email = StringField('Email', validators=[Required(), Length(1, 64),

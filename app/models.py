@@ -92,6 +92,14 @@ class User(UserMixin, db.Model):
         return '<User %r>' % self.username
 
 
+class GeneralSettings(db.Model):
+    __tablename__ = 'GeneralSettings'
+    email = db.Column(db.String(64), primary_key = True)
+    consumer_key = db.Column(db.String(64), unique=True, index=True)
+    consumer_secret = db.Column(db.String(64), unique=True, index=False)
+    access_token = db.Column(db.String(64), unique=True, index=False)
+    access_token_secret = db.Column(db.String(64), unique=True, index=False)
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
