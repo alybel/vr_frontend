@@ -6,7 +6,7 @@ from ..models import User
 
 
 class ConnectionSettingsForm(Form):
-    own_twittername = StringField('twittername (e.g. @jondoe)')
+    own_twittername = StringField('twittername (e.g. @jondoe)', validators=[Required()])
     consumer_key = StringField('consumer_key', validators=[Required()])
     consumer_secret = StringField('consumer_secret', validators=[Required()])
     access_token = StringField('access_token', validators=[Required()])

@@ -14,14 +14,6 @@ from .forms import ConnectionSettingsForm, AdvancedSettingsForm, KeywordForm, Bl
 @login_required
 def connection_settings():
     form = ConnectionSettingsForm()
-    sett = GeneralSettings.query.filter_by(email=current_user.email).first()
-    if not sett is None:
-        form.own_twittername.data = sett.own_twittername
-        form.access_token.data = sett.access_token
-        form.access_token_secret.data = sett.access_token_secret
-        form.consumer_key.data = sett.consumer_key
-        form.consumer_secret.data = sett.consumer_secret
-
     if form.validate_on_submit():
         sett = GeneralSettings.query.filter_by(email=current_user.email).first()
         if sett is None:
@@ -45,30 +37,29 @@ def connection_settings():
             db.session.commit()
             flash('Your Connection Settings have been changed')
             return redirect(url_for('main.index'))
+    sett = GeneralSettings.query.filter_by(email=current_user.email).first()
+    if not sett is None:
+        form.own_twittername.data = sett.own_twittername
+        form.access_token.data = sett.access_token
+        form.access_token_secret.data = sett.access_token_secret
+        form.consumer_key.data = sett.consumer_key
+        form.consumer_secret.data = sett.consumer_secret
     return render_template('vrconf/connection_settings.html', form=form)
 
 @vrconf.route('/advanced_settings', methods=['GET', 'POST'])
 @login_required
 def advanced_settings():
     form = AdvancedSettingsForm()
-    sett = GeneralSettings.query.filter_by(email=current_user.email).first()
-    if not sett is None:
-        form.max_updates_per_day.data = sett.max_updates_per_day
-        form.only_with_url.data = sett.only_with_url
-        form.favorite_score.data = sett.favorite_score
-        form.follow_score.data = sett.follow_score
-        form.status_update_score.data = sett.status_update_score
-        form.number_active_favorites.data = sett.number_active_favorites
-        form.number_active_follows.data = sett.number_active_follows
-        form.number_active_retweets.data = sett.number_active_retweets
-        form.follow_score.data = sett.follow_score
-        form.retweet_score.data = sett.retweet_score
     if form.validate_on_submit():
         sett = GeneralSettings.query.filter_by(email=current_user.email).first()
+        print sett.follow_score
         if sett is None:
             flash('Please enter your settings information first')
             return redirect(url_for('vrconf.connection_settings'))
         else:
+            print 'DEBUG'
+            print form.follow_score.data
+            print 'DEBUG END'
             sett.max_updates_per_day = form.max_updates_per_day.data
             sett.status_update_score = form.status_update_score.data
             sett.follow_score = form.follow_score.data
@@ -78,11 +69,20 @@ def advanced_settings():
             sett.number_active_follows = form.number_active_follows.data
             sett.number_active_retweets = form.number_active_retweets.data
             sett.number_active_favorites = form.number_active_favorites.data
-
-            db.session.add(sett)
             db.session.commit()
             flash('Your Advanced Settings have been stored')
             return redirect(url_for('main.index'))
+    sett2 = GeneralSettings.query.filter_by(email=current_user.email).first()
+    form.max_updates_per_day.data = sett2.max_updates_per_day
+    form.only_with_url.data = sett2.only_with_url
+    form.favorite_score.data = sett2.favorite_score
+    form.follow_score.data = sett2.follow_score
+    form.status_update_score.data = sett2.status_update_score
+    form.number_active_favorites.data = sett2.number_active_favorites
+    form.number_active_follows.data = sett2.number_active_follows
+    form.number_active_retweets.data = sett2.number_active_retweets
+    form.follow_score.data = sett2.follow_score
+    form.retweet_score.data = sett2.retweet_score
     return render_template('vrconf/advanced_settings.html', form=form)
 
 @vrconf.route('/target_settings', methods=['GET', 'POST'])
