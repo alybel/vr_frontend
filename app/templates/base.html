@@ -24,9 +24,10 @@
             <ul class="nav navbar-nav">
                 <!--<li><a href="{{ url_for('main.index') }}">Home</a></li>-->
                 {% if current_user.is_authenticated() %}
-                <li><a href="{{ url_for('main.index') }}">Target Content Settings</a></li>
-                <li><a href="{{ url_for('main.index') }}">Advanced Settings</a></li>
+                <li><a href="{{ url_for('vrconf.target_settings') }}">Target Content Settings</a></li>
+                <li><a href="{{ url_for('vrconf.advanced_settings') }}">Advanced Settings</a></li>
                 <li><a href="{{ url_for('vrconf.connection_settings') }}">Connection Settings</a></li>
+                <li><a href="{{ url_for('vrconf.blacklist_settings') }}">Negative Keywords and Blacklist</a></li>
                 {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">

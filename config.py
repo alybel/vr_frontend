@@ -11,7 +11,7 @@ class Config:
     MAIL_USE_SSL = True
     MAIL_USERNAME = 'valureach@gmail.com'
     MAIL_PASSWORD = '1ba12D1Kg84'
-    FLASKY_MAIL_SUBJECT_PREFIX = '[Flasky]'
+    FLASKY_MAIL_SUBJECT_PREFIX = '[Valureach Onboarding]'
     FLASKY_MAIL_SENDER = 'Valureach Onboarding <valureach@gmail.com>'
     FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN')
 
