@@ -1,9 +1,6 @@
 from flask.ext.wtf import Form
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField, FormField, SelectField, FieldList
-from wtforms.validators import Required, Length, Email, Regexp, EqualTo
-from wtforms import ValidationError
-from ..models import User
-
+from wtforms import StringField, BooleanField, SubmitField, IntegerField, SelectField
+from wtforms.validators import Required
 
 class ConnectionSettingsForm(Form):
     own_twittername = StringField('twittername (e.g. @jondoe)', validators=[Required()])

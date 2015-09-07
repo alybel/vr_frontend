@@ -94,20 +94,20 @@ class User(UserMixin, db.Model):
 
 class GeneralSettings(db.Model):
     __tablename__ = 'GeneralSettings'
-    email = db.Column(db.String(64), primary_key = True)
-    consumer_key = db.Column(db.String(64), unique=False, index = False)
+    fk_user_id = db.Column(db.Integer, primary_key=True, index=True)
+    consumer_key = db.Column(db.String(64), unique=False, index=False)
     consumer_secret = db.Column(db.String(64), unique=False, index=False)
     access_token = db.Column(db.String(64), unique=False, index=False)
     access_token_secret = db.Column(db.String(64), unique=False, index=False)
     own_twittername = db.Column(db.String(64), unique=True, index=False)
-    max_updates_per_day = db.Column(db.Integer, unique = False, index = False, default = 5)
-    status_update_score = db.Column(db.Integer, unique = False, index = False, default = 12)
-    follow_score = db.Column(db.Integer, unique = False, index = False, default = 10)
-    retweet_score = db.Column(db.Integer, unique = False, index = False, default = 14)
-    favorite_score = db.Column(db.Integer, unique = False, index = False, default = 14)
-    number_active_favorites = db.Column(db.Integer, unique = False, index = False, default = 384)
-    number_active_retweets = db.Column(db.Integer, unique = False, index = False, default = 482)
-    number_active_follows = db.Column(db.Integer, unique = False, index = False, default = 1982)
+    max_updates_per_day = db.Column(db.Integer, unique=False, index=False, default=5)
+    status_update_score = db.Column(db.Integer, unique=False, index=False, default=12)
+    follow_score = db.Column(db.Integer, unique = False, index = False, default=10)
+    retweet_score = db.Column(db.Integer, unique = False, index = False, default=14)
+    favorite_score = db.Column(db.Integer, unique = False, index = False, default=14)
+    number_active_favorites = db.Column(db.Integer, unique = False, index = False, default=384)
+    number_active_retweets = db.Column(db.Integer, unique = False, index = False, default=482)
+    number_active_follows = db.Column(db.Integer, unique = False, index = False, default=1982)
     only_with_url = db.Column(db.Integer, unique = False, index = False, default = 1)
     activated = db.Column(db.Integer, unique = False, index = False, default = 1)
 
@@ -115,21 +115,21 @@ class GeneralSettings(db.Model):
 class WhiteList(db.Model):
     __tablename__ = 'WhitelistKeywords'
     id = db.Column(db.Integer, primary_key = True)
-    email = db.Column(db.String(64), unique=False, index = False)
+    fk_user_id = db.Column(db.Integer, unique=False, index = False)
     keyword = db.Column(db.String(64), unique=False, index = False)
     weight = db.Column(db.Integer, unique=False, index = False)
 
 class BlackList(db.Model):
     __tablename__ = 'BlacklistKeywords'
     id = db.Column(db.Integer, primary_key = True)
-    email = db.Column(db.String(64), unique=False, index = False)
+    fk_user_id = db.Column(db.Integer, unique=False, index = False)
     keyword = db.Column(db.String(64), unique=False, index = False)
     weight = db.Column(db.Integer, unique=False, index = False)
 
 class NeverUnfollowAccounts(db.Model):
     __tablename__ = 'NeverUnfollowAccounts'
     id = db.Column(db.Integer, primary_key = True)
-    email = db.Column(db.String(64), unique=False, index = False)
+    fk_user_id = db.Column(db.Integer, unique=False, index = False)
     accountname = db.Column(db.String(64), unique=False, index = False)
 
 @login_manager.user_loader
