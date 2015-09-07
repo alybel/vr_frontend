@@ -5,10 +5,13 @@ from flask.ext.login import login_user, logout_user, login_required, \
 
 from . import vrconf
 from .. import db
-from ..models import GeneralSettings, WhiteList, BlackList
+from ..models import GeneralSettings, WhiteList, BlackList,NeverUnfollowAccounts
 from ..email import send_email
-from .forms import ConnectionSettingsForm, AdvancedSettingsForm, KeywordForm, BlacklistKeywordForm
+from .forms import ConnectionSettingsForm, AdvancedSettingsForm, KeywordForm, BlacklistKeywordForm, NeverUnfollowForm
 
+#ToDo write logic that users have a user_id that does not change when email changes
+#ToDo write button with which connection to TWitter can be tested
+#ToDo Write functionality to switch service on and off
 
 @vrconf.route('/connection_settings', methods=['GET', 'POST'])
 @login_required
@@ -144,3 +147,48 @@ def update_blacklist_entry():
         form.weight.data = weight
     kwds = BlackList.query.filter_by(email=current_user.email).all()
     return render_template('vrconf/blacklist_settings.html', form2 = form, entries=kwds)
+
+
+@vrconf.route('/never_unfollow_settings', methods=['GET', 'POST'])
+@login_required
+def never_unfollow_settings():
+    form = NeverUnfollowForm()
+    if form.validate_on_submit():
+        account = NeverUnfollowAccounts(
+            email=current_user.email,
+            accountname=form.account_name.data
+        )
+        print '#DEBUG'
+        print current_user.id
+        print '#DEBUG'
+        db.session.add(account)
+        db.session.commit()
+    accounts = NeverUnfollowAccounts.query.filter_by(email=current_user.email).all()
+    return render_template('vrconf/account_never_unfollow_settings.html', form=form, entries=accounts)
+
+@vrconf.route('/update_neverunfollow_entry', methods=['GET', 'POST'])
+@login_required
+def update_neverunfollow_entry():
+    form = NeverUnfollowForm()
+    del_id = request.form['id_to_delete']
+    account_name = request.form['account_name']
+    del_account = NeverUnfollowAccounts.query.filter_by(id=del_id).first()
+    db.session.delete(del_account)
+    db.session.commit()
+    if 'change' in request.form:
+        form.account_name.data = account_name
+    accounts = NeverUnfollowAccounts.query.filter_by(email=current_user.email).all()
+    return render_template('vrconf/account_never_unfollow_settings.html', form=form, entries=accounts)
+
+
+@vrconf.route('/delete_account', methods=['GET', 'POST'])
+@login_required
+def delete_account():
+    return render_template('vrconf/delete_account.html')
+
+@vrconf.route('/yes_delete', methods=['GET', 'POST'])
+@login_required
+def yes_delete():
+    flash('Your account has been deleted')
+    #ToDo write logic that deletes person from all tables
+    return redirect(url_for('main.index'))

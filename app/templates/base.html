@@ -28,6 +28,7 @@
                 <li><a href="{{ url_for('vrconf.advanced_settings') }}">Advanced Settings</a></li>
                 <li><a href="{{ url_for('vrconf.connection_settings') }}">Connection Settings</a></li>
                 <li><a href="{{ url_for('vrconf.blacklist_settings') }}">Negative Keywords and Blacklist</a></li>
+                <li><a href="{{ url_for('vrconf.never_unfollow_settings') }}">Twitter Users never to Unfollow</a></li>
                 {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -35,6 +36,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('vrconf.delete_account') }}">Delete Account</a></li>
                         <li><a href="{{ url_for('auth.change_password') }}">Change Password</a></li>
                         <li><a href="{{ url_for('auth.change_email_request') }}">Change Email</a></li>
                         <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>

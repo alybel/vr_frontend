@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Delete Your Valureach Account{% endblock %}
+
+{% block page_content %}
+
+<div class="page-header">
+    <h1>Are your sure?</h1>
+</div>
+<form action = "{{ url_for('vrconf.yes_delete')}}" method = POST>
+<input type="submit" value = 'permanantly delete account' >
+</form>
+{% endblock %}

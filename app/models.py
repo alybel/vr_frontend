@@ -126,8 +126,11 @@ class BlackList(db.Model):
     keyword = db.Column(db.String(64), unique=False, index = False)
     weight = db.Column(db.Integer, unique=False, index = False)
 
-
-
+class NeverUnfollowAccounts(db.Model):
+    __tablename__ = 'NeverUnfollowAccounts'
+    id = db.Column(db.Integer, primary_key = True)
+    email = db.Column(db.String(64), unique=False, index = False)
+    accountname = db.Column(db.String(64), unique=False, index = False)
 
 @login_manager.user_loader
 def load_user(user_id):

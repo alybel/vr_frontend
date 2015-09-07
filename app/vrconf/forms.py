@@ -35,3 +35,6 @@ class BlacklistKeywordForm(Form):
     weight = SelectField( choices = [('-5', ' minus 5'),('-7', ' minus 7'),('-12','minus 12'), ('-1000', 'forbidden')])
     submit = SubmitField('Add Item')
 
+class NeverUnfollowForm(Form):
+    account_name = StringField()
+    submit = SubmitField('Add Item')
