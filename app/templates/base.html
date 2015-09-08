@@ -6,6 +6,13 @@
 {{ super() }}
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
+
+
+
 {% endblock %}
 
 {% block navbar %}
@@ -60,12 +67,21 @@
         {{ message }}
     </div>
     {% endfor %}
+    {% block page_content %}
+    {% endblock %}
+</div>
 
-    {% block page_content %}{% endblock %}
+<div class="container">
+    <div class = "col-md-4">
+        <h3>have valureach running</h3>
+        <input type="checkbox" checked data-toggle="toggle">
+    </div>
 </div>
 {% endblock %}
 
 {% block scripts %}
+
+
 {{ super() }}
 {{ moment.include_moment() }}
 {% endblock %}

@@ -25,7 +25,7 @@ def connection_settings():
                 consumer_secret=form.consumer_secret.data,
                 access_token=form.access_token.data,
                 access_token_secret = form.access_token_secret.data,
-                own_twittername=form.own_twittername.data)
+                own_twittername=form.own_twittername.data.lstrip('@'))
             flash('Your Connection Settings have been stored')
             db.session.add(sett)
             return redirect(url_for('main.index'))
@@ -150,7 +150,7 @@ def never_unfollow_settings():
     if form.validate_on_submit():
         account = NeverUnfollowAccounts(
             fk_user_id=current_user.id,
-            accountname=form.account_name.data
+            accountname=form.account_name.data.lstrip('@')
         )
         db.session.add(account)
         db.session.commit()
@@ -167,7 +167,7 @@ def update_neverunfollow_entry():
     db.session.delete(del_account)
     db.session.commit()
     if 'change' in request.form:
-        form.account_name.data = account_name
+        form.account_name.data = '@'+account_name
     accounts = NeverUnfollowAccounts.query.filter_by(fk_user_id=current_user.id).all()
     return render_template('vrconf/account_never_unfollow_settings.html', form=form, entries=accounts)
 
