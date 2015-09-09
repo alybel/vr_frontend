@@ -23,6 +23,7 @@ class User(UserMixin, db.Model):
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     password_hash = db.Column(db.String(128))
     confirmed = db.Column(db.Boolean, default=False)
+    connection_settings_set = db.Column(db.Boolean, default = False)
 
     @property
     def password(self):
@@ -109,7 +110,9 @@ class GeneralSettings(db.Model):
     number_active_retweets = db.Column(db.Integer, unique = False, index = False, default=482)
     number_active_follows = db.Column(db.Integer, unique = False, index = False, default=1982)
     only_with_url = db.Column(db.Integer, unique = False, index = False, default = 1)
-    activated = db.Column(db.Integer, unique = False, index = False, default = 1)
+    payed_active = db.Column(db.Integer, unique = False, index = False, default = 0)
+    test_active = db.Column(db.Integer, unique = False, index = False, default = 1)
+    onoff = db.Column(db.Integer, unique = False, index = False, default = 0)
 
 
 class WhiteList(db.Model):

@@ -1,5 +1,5 @@
 from flask.ext.wtf import Form
-from wtforms import StringField, BooleanField, SubmitField, IntegerField, SelectField
+from wtforms import StringField, BooleanField, SubmitField, IntegerField, SelectField, HiddenField
 from wtforms.validators import Required
 
 class ConnectionSettingsForm(Form):
@@ -35,3 +35,8 @@ class BlacklistKeywordForm(Form):
 class NeverUnfollowForm(Form):
     account_name = StringField()
     submit = SubmitField('Add Item')
+
+class OnOffForm(Form):
+    #onoff = SelectField(choices=[('0', 'off'), ('1', 'on')])
+    onoff = HiddenField()
+    submit = SubmitField('Update Status')

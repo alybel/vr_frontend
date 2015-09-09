@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
 {% block title %}Valureach{% endblock %}
 
@@ -10,4 +11,16 @@
     <h1>Welcome to Valureach!</h1>
     {% endif %}
 </div>
+<div class="col-md-8">
+    {% if current_user.connection_settings_set == 1 %}
+    <h3>start / stop the engine</h3>
+    {% if onoff==1 %}
+    <h4 style="color:green">service is running</h4>
+    {% else %}
+    <h4 style="color:blue">service is on hold</h4>
+    {% endif %}
+    {{ wtf.quick_form(form=form, id='onoff', action=url_for('vrconf.onoff'))}}
+    {% endif %}
+</div>
+
 {% endblock %}

@@ -11,7 +11,9 @@
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
 
-
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
 
 {% endblock %}
 
@@ -67,16 +69,12 @@
         {{ message }}
     </div>
     {% endfor %}
+
+
     {% block page_content %}
     {% endblock %}
 </div>
 
-<div class="container">
-    <div class = "col-md-4">
-        <h3>have valureach running</h3>
-        <input type="checkbox" checked data-toggle="toggle">
-    </div>
-</div>
 {% endblock %}
 
 {% block scripts %}

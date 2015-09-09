@@ -6,7 +6,8 @@ from flask.ext.login import login_user, logout_user, login_required, \
 from . import vrconf
 from .. import db
 from ..models import GeneralSettings, WhiteList, BlackList,NeverUnfollowAccounts, User
-from .forms import ConnectionSettingsForm, AdvancedSettingsForm, KeywordForm, BlacklistKeywordForm, NeverUnfollowForm
+from .forms import ConnectionSettingsForm, AdvancedSettingsForm, KeywordForm, BlacklistKeywordForm, NeverUnfollowForm, \
+    OnOffForm
 
 #ToDo write logic that users have a user_id that does not change when email changes
 #ToDo write button with which connection to TWitter can be tested
@@ -35,6 +36,8 @@ def connection_settings():
             sett.consumer_secret = form.consumer_secret.data
             sett.access_token = form.access_token.data
             sett.access_token_secret = form.access_token_secret.data
+            #ToDo change the below line such that this is set true when connection settings are tested successfully
+            current_user.connection_settings_set = True
             db.session.add(sett)
             db.session.commit()
             flash('Your Connection Settings have been changed')
@@ -198,3 +201,15 @@ def yes_delete():
     db.session.commit()
 
     return redirect(url_for('main.index'))
+
+@vrconf.route('/onoff', methods=['GET', 'POST'])
+@login_required
+def onoff():
+    form = OnOffForm()
+    if form.validate_on_submit():
+        sett = GeneralSettings.query.filter_by(fk_user_id=current_user.id).first()
+        sett.onoff = 0 if sett.onoff == 1 else 1
+        db.session.add(sett)
+        db.session.commit()
+    return redirect(url_for('main.index'))
+
