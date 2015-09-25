@@ -195,8 +195,8 @@ def yes_delete():
         db.session.delete(kwd)
     for kwd in w_kwds:
         db.session.delete(kwd)
-
-    db.session.delete(sett)
+    if sett is not None:
+        db.session.delete(sett)
     db.session.delete(user)
     db.session.commit()
 
