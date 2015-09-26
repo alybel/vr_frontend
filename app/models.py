@@ -88,6 +88,7 @@ class User(UserMixin, db.Model):
         if self.query.filter_by(email=new_email).first() is not None:
             return False
         self.email = new_email
+        print 'test'
         db.session.add(self)
         db.session.commit()
         return True
