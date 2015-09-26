@@ -19,7 +19,7 @@
     {% else %}
     <h4 style="color:blue">service is on hold</h4>
     {% endif %}
-    {{ wtf.quick_form(form=form, id='onoff', action=url_for('vrconf.onoff'))}}
+    {{ wtf.quick_form(form=form, action=url_for('vrconf.onoff'))}}
     {% endif %}
 </div>
 
