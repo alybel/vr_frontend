@@ -68,7 +68,6 @@ class User(UserMixin, db.Model):
         self.password = new_password
         db.session.add(self)
         db.session.commit()
-        print 'debug'
         return True
 
     def generate_email_change_token(self, new_email, expiration=3600):
