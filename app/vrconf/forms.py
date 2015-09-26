@@ -24,12 +24,12 @@ class AdvancedSettingsForm(Form):
 
 class KeywordForm(Form):
     keyword = StringField()
-    weight = SelectField( choices = [('5', '5'),('7', '7'),('12','12')])
+    weight = SelectField(choices=[('5', '5'), ('7', '7'), ('12', '12')])
     submit = SubmitField('Add Item')
 
 class BlacklistKeywordForm(Form):
     keyword = StringField()
-    weight = SelectField( choices = [('-5', ' minus 5'),('-7', ' minus 7'),('-12','minus 12'), ('-1000', 'forbidden')])
+    weight = SelectField( choices=[('-5', ' minus 5'), ('-7', ' minus 7'), ('-12','minus 12'), ('-1000', 'forbidden')])
     submit = SubmitField('Add Item')
 
 class NeverUnfollowForm(Form):

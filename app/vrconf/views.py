@@ -91,13 +91,13 @@ def target_settings():
     form = KeywordForm()
     if form.validate_on_submit():
         kwd = WhiteList(
-            fk_user_id = current_user.id,
-            keyword = form.keyword.data,
-            weight = form.weight.data)
+            fk_user_id=current_user.id,
+            keyword=form.keyword.data,
+            weight=form.weight.data)
         db.session.add(kwd)
         db.session.commit()
     kwds = WhiteList.query.filter_by(fk_user_id=current_user.id).all()
-    return render_template('vrconf/target_settings.html', form2=form, entries=kwds)
+    return render_template('vrconf/target_settings.html', form=form, entries=kwds)
 
 @vrconf.route('/update_entry', methods=['GET', 'POST'])
 @login_required
