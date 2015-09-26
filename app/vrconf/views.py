@@ -102,7 +102,7 @@ def target_settings():
 @vrconf.route('/update_entry', methods=['GET', 'POST'])
 @login_required
 def update_entry():
-    form2 = KeywordForm()
+    form = KeywordForm()
     del_id = request.form['id_to_delete']
     kwd = request.form['keyword']
     weight = request.form['weight']
@@ -110,10 +110,10 @@ def update_entry():
     db.session.delete(del_keyword)
     db.session.commit()
     if 'change' in request.form:
-        form2.keyword.data = kwd
-        form2.weight.data = weight
+        form.keyword.data = kwd
+        form.weight.data = weight
     kwds = WhiteList.query.filter_by(fk_user_id=current_user.id).all()
-    return render_template('vrconf/target_settings.html', form2 = form2, entries=kwds)
+    return render_template('vrconf/target_settings.html', form = form, entries=kwds)
 
 @vrconf.route('/blacklist_settings', methods=['GET', 'POST'])
 @login_required
