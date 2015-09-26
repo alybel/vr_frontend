@@ -68,6 +68,7 @@ class User(UserMixin, db.Model):
         self.password = new_password
         db.session.add(self)
         db.session.commit()
+        print 'debug'
         return True
 
     def generate_email_change_token(self, new_email, expiration=3600):
@@ -88,7 +89,6 @@ class User(UserMixin, db.Model):
         if self.query.filter_by(email=new_email).first() is not None:
             return False
         self.email = new_email
-        print 'test'
         db.session.add(self)
         db.session.commit()
         return True
