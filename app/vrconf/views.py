@@ -29,6 +29,7 @@ def connection_settings():
                 own_twittername=form.own_twittername.data.lstrip('@'))
             flash('Your Connection Settings have been stored')
             db.session.add(sett)
+            db.session.commit()
             return redirect(url_for('main.index'))
         else:
             sett.own_twittername = form.own_twittername.data
