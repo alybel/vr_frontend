@@ -23,7 +23,7 @@ class User(UserMixin, db.Model):
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     password_hash = db.Column(db.String(128))
     confirmed = db.Column(db.Boolean, default=False)
-    connection_settings_set = db.Column(db.Boolean, default = False)
+    connection_settings_set = db.Column(db.Boolean, default=False)
 
     @property
     def password(self):
@@ -106,37 +106,42 @@ class GeneralSettings(db.Model):
     own_twittername = db.Column(db.String(64), unique=True, index=False)
     max_updates_per_day = db.Column(db.Integer, unique=False, index=False, default=5)
     status_update_score = db.Column(db.Integer, unique=False, index=False, default=12)
-    follow_score = db.Column(db.Integer, unique = False, index = False, default=10)
-    retweet_score = db.Column(db.Integer, unique = False, index = False, default=14)
-    favorite_score = db.Column(db.Integer, unique = False, index = False, default=14)
-    number_active_favorites = db.Column(db.Integer, unique = False, index = False, default=384)
-    number_active_retweets = db.Column(db.Integer, unique = False, index = False, default=482)
-    number_active_follows = db.Column(db.Integer, unique = False, index = False, default=1982)
-    only_with_url = db.Column(db.Integer, unique = False, index = False, default = 1)
-    payed_active = db.Column(db.Integer, unique = False, index = False, default = 0)
-    test_active = db.Column(db.Integer, unique = False, index = False, default = 1)
-    onoff = db.Column(db.Integer, unique = False, index = False, default = 0)
+    follow_score = db.Column(db.Integer, unique=False, index=False, default=10)
+    retweet_score = db.Column(db.Integer, unique=False, index=False, default=14)
+    favorite_score = db.Column(db.Integer, unique=False, index=False, default=14)
+    number_active_favorites = db.Column(db.Integer, unique=False, index=False, default=384)
+    number_active_retweets = db.Column(db.Integer, unique=False, index=False, default=482)
+    number_active_follows = db.Column(db.Integer, unique=False, index=False, default=1982)
+    only_with_url = db.Column(db.Integer, unique=False, index=False, default=1)
+    payed_active = db.Column(db.Integer, unique=False, index=False, default=0)
+    test_active = db.Column(db.Integer, unique=False, index=False, default=1)
+    onoff = db.Column(db.Integer, unique=False, index=False, default=0)
+    restart_needed = db.Column(db.Integer, unique=False, index=False, default=0)
+    paused_until = db.Column(db.DateTime, unique=False, index=False, default=None)
 
 
 class WhiteList(db.Model):
     __tablename__ = 'WhitelistKeywords'
-    id = db.Column(db.Integer, primary_key = True)
-    fk_user_id = db.Column(db.Integer, unique=False, index = False)
-    keyword = db.Column(db.String(64), unique=False, index = False)
-    weight = db.Column(db.Integer, unique=False, index = False)
+    id = db.Column(db.Integer, primary_key=True)
+    fk_user_id = db.Column(db.Integer, unique=False, index=False)
+    keyword = db.Column(db.String(64), unique=False, index=False)
+    weight = db.Column(db.Integer, unique=False, index=False)
+
 
 class BlackList(db.Model):
     __tablename__ = 'BlacklistKeywords'
-    id = db.Column(db.Integer, primary_key = True)
-    fk_user_id = db.Column(db.Integer, unique=False, index = False)
-    keyword = db.Column(db.String(64), unique=False, index = False)
-    weight = db.Column(db.Integer, unique=False, index = False)
+    id = db.Column(db.Integer, primary_key=True)
+    fk_user_id = db.Column(db.Integer, unique=False, index=False)
+    keyword = db.Column(db.String(64), unique=False, index=False)
+    weight = db.Column(db.Integer, unique=False, index=False)
+
 
 class NeverUnfollowAccounts(db.Model):
     __tablename__ = 'NeverUnfollowAccounts'
-    id = db.Column(db.Integer, primary_key = True)
-    fk_user_id = db.Column(db.Integer, unique=False, index = False)
-    accountname = db.Column(db.String(64), unique=False, index = False)
+    id = db.Column(db.Integer, primary_key=True)
+    fk_user_id = db.Column(db.Integer, unique=False, index=False)
+    accountname = db.Column(db.String(64), unique=False, index=False)
+
 
 @login_manager.user_loader
 def load_user(user_id):
