@@ -3,7 +3,7 @@ from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app
 from flask.ext.login import UserMixin
 from . import db, login_manager
-
+import datetime
 
 class Role(db.Model):
     __tablename__ = 'roles'
@@ -117,7 +117,7 @@ class GeneralSettings(db.Model):
     test_active = db.Column(db.Integer, unique=False, index=False, default=1)
     onoff = db.Column(db.Integer, unique=False, index=False, default=0)
     restart_needed = db.Column(db.Integer, unique=False, index=False, default=0)
-    paused_until = db.Column(db.DateTime, unique=False, index=False, default=None)
+    paused_until = db.Column(db.DateTime, unique=False, index=False, default=datetime.datetime(2000,1,1))
 
 
 class WhiteList(db.Model):
