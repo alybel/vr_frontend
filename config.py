@@ -23,16 +23,19 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DBDEV')
+    # mysql://username:password@server/db
+    a = os.environ
+    SQLALCHEMY_DATABASE_URI = os.environ.get('VALUEREACH_MYSQL_URL')
 
 
 class TestingConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DBTEST')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('VALUEREACH_MYSQL_URL')
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DBPROD')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('VALUEREACH_MYSQL_URL')
+
 
 
 config = {
