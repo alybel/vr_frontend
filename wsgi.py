@@ -1,9 +1,9 @@
 __author__ = 'matyas'
 import os
-from app import create_app
+import app as Application
 from flask.ext.script import Manager, Shell
 
-app = create_app(os.getenv('FLASK_CONFIG') or 'default')
+#app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 
 if __name__ == '__main__':
-    app.run()
+    Application.run()
