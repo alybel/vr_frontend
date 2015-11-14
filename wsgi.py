@@ -1,8 +1,12 @@
 __author__ = 'matyas'
-import os
-from app import create_app
+import os, sys
+from app import *
+sys.path.append('/home/matyas/vr_frontend/')
 
-app = create_app(os.getenv('FLASK_CONFIG') or 'default')
+application = create_app("development")
 
-if __name__ == '__main__':
-    app.run()
+#sys.path.append('/home/matyas/vr_frontend/')
+#app = create_app(os.getenv('FLASK_CONFIG') or 'default')
+
+#if __name__ == '__main__':
+#    app.run()
