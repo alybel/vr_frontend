@@ -25,16 +25,16 @@ class DevelopmentConfig(Config):
     DEBUG = True
     # mysql://username:password@server/db
     a = os.environ
-    SQLALCHEMY_DATABASE_URI = "mysql://root:valuereachdb@localhost:3306/valuereach"
+    SQLALCHEMY_DATABASE_URI = "............."
 
 
 class TestingConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = "mysql://root:valuereachdb@localhost:3306/valuereach"
+    SQLALCHEMY_DATABASE_URI = "............."
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = "mysql://root:valuereachdb@localhost:3306/valuereach"
+    SQLALCHEMY_DATABASE_URI = "........."
  
 
 
