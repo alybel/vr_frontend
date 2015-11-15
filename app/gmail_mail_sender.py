@@ -8,8 +8,8 @@ import os
 class GmailMessageCreator(object):
 
     def __init__(self, recipient, subject, message):
-        self.email_from_adress = '........'
-        self.email_from_pwd = '.........'
+        self.email_from_adress = 'vrbackend@gmail.com'
+        self.email_from_pwd = 'valuereachmail'
 
         self.recipient = recipient
         self.subject = subject
