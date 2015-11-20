@@ -23,16 +23,20 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DBDEV')
+    # mysql://username:password@server/db
+    a = os.environ
+    SQLALCHEMY_DATABASE_URI = "............."
 
 
 class TestingConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DBTEST')
+    SQLALCHEMY_DATABASE_URI = "............."
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DBPROD')
+    SQLALCHEMY_DATABASE_URI = "........."
+ 
+
 
 
 config = {
