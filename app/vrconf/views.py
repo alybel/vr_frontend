@@ -39,6 +39,7 @@ def connection_settings():
             sett.access_token_secret = form.access_token_secret.data
             #ToDo change the below line such that this is set true when connection settings are tested successfully
             current_user.connection_settings_set = True
+            db.session.add(current_user)
             db.session.add(sett)
             db.session.commit()
             flash('Your Connection Settings have been changed')
