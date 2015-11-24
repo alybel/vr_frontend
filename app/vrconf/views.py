@@ -41,6 +41,7 @@ def connection_settings():
             current_user.connection_settings_set = True
             db.session.add(current_user)
             db.session.add(sett)
+
             db.session.commit()
             flash('Your Connection Settings have been changed')
             return redirect(url_for('main.index'))
