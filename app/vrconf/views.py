@@ -53,6 +53,15 @@ def connection_settings():
         form.consumer_secret.data = sett.consumer_secret
     return render_template('vrconf/connection_settings.html', form=form)
 
+
+def set_restart_needed_flag():
+    """set the restart_needed flag to 1"""
+    sett = GeneralSettings.query.filter_by(fk_user_id=current_user.id).first()
+    sett.restart_needed = 1
+    db.session.add(sett)
+    db.session.commit()
+
+
 @vrconf.route('/advanced_settings', methods=['GET', 'POST'])
 @login_required
 def advanced_settings():
@@ -97,9 +106,7 @@ def target_settings():
             fk_user_id=current_user.id,
             keyword=form.keyword.data,
             weight=form.weight.data)
-        sett = GeneralSettings.query.filter_by(fk_user_id=current_user.id).first()
-        sett.restart_needed = 1
-        db.session.add(sett)
+        set_restart_needed_flag()
         db.session.add(kwd)
         db.session.commit()
     kwds = WhiteList.query.filter_by(fk_user_id=current_user.id).all()
@@ -177,12 +184,6 @@ def never_unfollow_settings():
         db.session.commit()
     accounts = NeverUnfollowAccounts.query.filter_by(fk_user_id=current_user.id).all()
     return render_template('vrconf/account_never_unfollow_settings.html', form=form, entries=accounts)
-
-
-def _set_restart_needed_flag():
-    sett = GeneralSettings.query.filter_by(fk_user_id=current_user.id).first()
-    sett.restart_needed = 1
-    db.session.add(sett)
 
 
 @vrconf.route('/update_neverunfollow_entry', methods=['GET', 'POST'])
