@@ -68,7 +68,7 @@ def advanced_settings():
         sett.number_active_follows = form.number_active_follows.data
         sett.number_active_retweets = form.number_active_retweets.data
         sett.number_active_favorites = form.number_active_favorites.data
-        sett.restart_needed = True
+        sett.restart_needed = 1
         db.session.commit()
         flash('Your Advanced Settings have been stored')
         return redirect(url_for('main.index'))
