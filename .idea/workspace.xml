@@ -32,8 +32,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/vrconf/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6373938">
-              <caret line="108" column="33" selection-start-line="108" selection-start-column="33" selection-end-line="108" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.5311615">
+              <caret line="187" column="4" selection-start-line="187" selection-start-column="4" selection-end-line="187" selection-end-column="4" />
               <folding>
                 <element signature="e#0#68#0" expanded="true" />
               </folding>
@@ -556,7 +556,13 @@
       <option name="project" value="LOCAL" />
       <updated>1448807682833</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="started to rollout the restart needed flag">
+      <created>1448807903313</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1448807903313</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -603,7 +609,8 @@
     <MESSAGE value="added restart_needed to advanced settings" />
     <MESSAGE value="changed value of restart_needed in view from True to 1" />
     <MESSAGE value="rolled out restart_needed_flag to all changes alsor introduced test function" />
-    <option name="LAST_COMMIT_MESSAGE" value="rolled out restart_needed_flag to all changes alsor introduced test function" />
+    <MESSAGE value="started to rollout the restart needed flag" />
+    <option name="LAST_COMMIT_MESSAGE" value="started to rollout the restart needed flag" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1006,8 +1013,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/vrconf/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6373938">
-          <caret line="108" column="33" selection-start-line="108" selection-start-column="33" selection-end-line="108" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.5311615">
+          <caret line="187" column="4" selection-start-line="187" selection-start-column="4" selection-end-line="187" selection-end-column="4" />
           <folding>
             <element signature="e#0#68#0" expanded="true" />
           </folding>

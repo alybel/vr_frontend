@@ -120,9 +120,7 @@ def update_entry():
     kwd = request.form['keyword']
     weight = request.form['weight']
     del_keyword = WhiteList.query.filter_by(id=del_id).first()
-    sett = GeneralSettings.query.filter_by(fk_user_id=current_user.id).first()
-    sett.restart_needed = 1
-    db.session.add(sett)
+    set_restart_needed_flag()
     db.session.delete(del_keyword)
     db.session.commit()
     if 'change' in request.form:
@@ -140,9 +138,7 @@ def blacklist_settings():
             fk_user_id = current_user.id,
             keyword = form.keyword.data,
             weight = form.weight.data)
-        sett = GeneralSettings.query.filter_by(fk_user_id=current_user.id).first()
-        sett.restart_needed = 1
-        db.session.add(sett)
+        set_restart_needed_flag()
         db.session.add(kwd)
         db.session.commit()
     kwds = BlackList.query.filter_by(fk_user_id=current_user.id).all()
@@ -156,9 +152,7 @@ def update_blacklist_entry():
     kwd = request.form['keyword']
     weight = request.form['weight']
     del_keyword = BlackList.query.filter_by(id=del_id).first()
-    sett = GeneralSettings.query.filter_by(fk_user_id=current_user.id).first()
-    sett.restart_needed = 1
-    db.session.add(sett)
+    set_restart_needed_flag()
     db.session.delete(del_keyword)
     db.session.commit()
     if 'change' in request.form:
@@ -177,9 +171,7 @@ def never_unfollow_settings():
             fk_user_id=current_user.id,
             accountname=form.account_name.data.lstrip('@')
         )
-        sett = GeneralSettings.query.filter_by(fk_user_id=current_user.id).first()
-        sett.restart_needed = 1
-        db.session.add(sett)
+        set_restart_needed_flag()
         db.session.add(account)
         db.session.commit()
     accounts = NeverUnfollowAccounts.query.filter_by(fk_user_id=current_user.id).all()
@@ -193,7 +185,7 @@ def update_neverunfollow_entry():
     del_id = request.form['id_to_delete']
     account_name = request.form['account_name']
     del_account = NeverUnfollowAccounts.query.filter_by(id=del_id).first()
-    _set_restart_needed_flag()
+    set_restart_needed_flag()
     db.session.delete(del_account)
     db.session.commit()
     if 'change' in request.form:
