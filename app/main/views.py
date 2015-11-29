@@ -15,5 +15,5 @@ def index():
         pass
     form = OnOffForm()
     form.submit.label.text = "switch off" if att == 1 else "switch on"
-    return render_template('index.html', form=form, onoff = att)
+    return render_template('index.html', form=form, onoff=att)
 
