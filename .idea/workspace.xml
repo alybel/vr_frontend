@@ -32,8 +32,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/vrconf/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.25637394">
-              <caret line="70" column="31" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.68130314">
+              <caret line="194" column="30" selection-start-line="194" selection-start-column="30" selection-end-line="194" selection-end-column="30" />
               <folding>
                 <element signature="e#0#68#0" expanded="true" />
               </folding>
@@ -544,7 +544,13 @@
       <option name="project" value="LOCAL" />
       <updated>1448806624373</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="changed value of restart_needed in view from True to 1">
+      <created>1448806892809</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1448806892809</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -589,7 +595,8 @@
     <MESSAGE value="test emtpy line" />
     <MESSAGE value="cleaned code" />
     <MESSAGE value="added restart_needed to advanced settings" />
-    <option name="LAST_COMMIT_MESSAGE" value="added restart_needed to advanced settings" />
+    <MESSAGE value="changed value of restart_needed in view from True to 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed value of restart_needed in view from True to 1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -992,8 +999,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/vrconf/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25637394">
-          <caret line="70" column="31" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.68130314">
+          <caret line="194" column="30" selection-start-line="194" selection-start-column="30" selection-end-line="194" selection-end-column="30" />
           <folding>
             <element signature="e#0#68#0" expanded="true" />
           </folding>
