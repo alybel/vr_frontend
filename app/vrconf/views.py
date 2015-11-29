@@ -41,7 +41,6 @@ def connection_settings():
             current_user.connection_settings_set = True
             db.session.add(current_user)
             db.session.add(sett)
-
             db.session.commit()
             flash('Your Connection Settings have been changed')
             return redirect(url_for('main.index'))
@@ -69,6 +68,7 @@ def advanced_settings():
         sett.number_active_follows = form.number_active_follows.data
         sett.number_active_retweets = form.number_active_retweets.data
         sett.number_active_favorites = form.number_active_favorites.data
+        sett.restart_needed = True
         db.session.commit()
         flash('Your Advanced Settings have been stored')
         return redirect(url_for('main.index'))
