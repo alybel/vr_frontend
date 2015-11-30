@@ -9,9 +9,7 @@ from ..models import GeneralSettings, WhiteList, BlackList,NeverUnfollowAccounts
 from .forms import ConnectionSettingsForm, AdvancedSettingsForm, KeywordForm, BlacklistKeywordForm, NeverUnfollowForm, \
     OnOffForm
 
-#ToDo write logic that users have a user_id that does not change when email changes
 #ToDo write button with which connection to TWitter can be tested
-#ToDo Write functionality to switch service on and off
 
 @vrconf.route('/connection_settings', methods=['GET', 'POST'])
 @login_required
@@ -20,6 +18,7 @@ def connection_settings():
     if form.validate_on_submit():
         sett = GeneralSettings.query.filter_by(fk_user_id=current_user.id).first()
         if sett is None:
+            # This is the case when the user logs in for the first time
             sett = GeneralSettings(
                 fk_user_id = current_user.id,
                 consumer_key=form.consumer_key.data,
@@ -28,6 +27,8 @@ def connection_settings():
                 access_token_secret = form.access_token_secret.data,
                 own_twittername=form.own_twittername.data.lstrip('@'))
             flash('Your Connection Settings have been stored')
+            current_user.connection_settings_set = True
+            db.session.add(current_user)
             db.session.add(sett)
             db.session.commit()
             return redirect(url_for('main.index'))
